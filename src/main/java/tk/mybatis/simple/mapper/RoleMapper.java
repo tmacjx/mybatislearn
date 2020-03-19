@@ -1,13 +1,14 @@
 package tk.mybatis.simple.mapper;
 
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import tk.mybatis.simple.model.SysRole;
 
 import java.util.List;
 
+/*
+注解 需要手动拼接SQL字符串, 需要代码编译生成
+不方便维护, 只适用于程序简单数据库表基本不变
+ */
 public interface RoleMapper {
 
 
@@ -32,6 +33,34 @@ public interface RoleMapper {
     @ResultMap("roleResultMap")
     @Select("select * from sys_role")
     List<SysRole> selectAll();
+
+    @Insert({"insert into sys_role (id, role_name, enabled, create_by, create_time) " +
+            "values (#{id}, #{roleName}, #{enabled}, #{createBy}, #{createTime, jdbcType=TIMESTAMP})"})
+    int insert(SysRole sysRole);
+
+
+    @Insert({"insert into sys_role (role_name, enabled, create_by, create_time) " +
+            "values (#{roleName}, #{enabled}, #{createBy}, #{createTime, jdbcType=TIMESTAMP})"})
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int insert2(SysRole sysRole);
+
+    @Insert({"insert into sys_role (role_name, enabled, create_by, create_time) " +
+            "values (#{roleName}, #{enabled}, #{createBy}, #{createTime, jdbcType=TIMESTAMP})"})
+    @SelectKey(statement = "select LAST_INSERT_ID()",
+            keyProperty = "id",
+            resultType = Long.class,
+            before = false)
+    int insert3(SysRole sysRole);
+
+    @Update({"update sys_role " +
+            "set role_name = #{roleName}, enabled = #{enabled}, " +
+            "create_by = #{createBy}, create_time = #{createTime, jdbcType=TIMESTAMP}" +
+            "where id = #{id}"})
+    int updateById(SysRole sysRole);
+
+
+    @Delete("Delete from sys_role where id = #{id} ")
+    int deleteById(Long id);
 
 
 }

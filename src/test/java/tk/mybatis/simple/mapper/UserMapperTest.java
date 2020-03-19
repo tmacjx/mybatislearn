@@ -78,7 +78,6 @@ public class UserMapperTest extends BaseMapperTest {
             // 执行SQL影响的行数
             int result = userMapper.insert2(user);
             Assert.assertEquals(1, result);
-            // 没有给id赋值, 没有配置回写id
             Assert.assertNotNull(user.getId());
             // 需要手动commit
             sqlSession.commit();
@@ -103,9 +102,7 @@ public class UserMapperTest extends BaseMapperTest {
             // 执行SQL影响的行数
             int result = userMapper.insert3(user);
             Assert.assertEquals(1, result);
-            // 没有给id赋值, 没有配置回写id
             Assert.assertNotNull(user.getId());
-            // 需要手动commit
         }finally {
             sqlSession.rollback();
             sqlSession.close();
