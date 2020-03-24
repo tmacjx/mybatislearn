@@ -198,7 +198,7 @@
 
     </select>
 
-    <!--查询 if elif else -->
+    <!--查询 switch case default -->
     <select id="selectByIdOrUserName" resultType="tk.mybatis.simple.model.SysUser">
         select id,
             user_name userName,

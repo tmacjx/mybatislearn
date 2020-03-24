@@ -1,5 +1,6 @@
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/generator/Generator.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/model/SysPrivilege.java
+/Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/model/Country.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/mapper/UserMapper.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/model/SysUser.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/model/SysRole.java
@@ -7,8 +8,10 @@
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/model/SysUserRole.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/mapper/RoleMapper.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/type/EnabledTypeHandler.java
+/Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/model/CountryExample.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/model/SysRolePrivilege.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/model/CreateInfo.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/generator/MyCommentGenerator.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/type/Enabled.java
 /Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/mapper/PrivilegeMapper.java
+/Users/tmackan/IdeaProjects/simple/src/main/java/tk/mybatis/simple/mapper/CountryMapper.java
