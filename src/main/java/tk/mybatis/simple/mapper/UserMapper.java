@@ -29,6 +29,11 @@ public interface UserMapper {
     List<SysRole> selectRoleByUserIdAndRoleEnabled(@Param("userId") Long userId,
                                                    @Param("enabled") Integer enabled);
 
+    SysUser selectUserAndRoleById(Long id);
+
+    SysUser selectUserAndRoleById2(Long id);
+    SysUser selectUserRoleMapSelect(Long id);
+
     List<SysUser> selectByUser(SysUser sysUser);
 
     int updateByldSelective(SysUser sysUser);
