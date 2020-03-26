@@ -357,7 +357,27 @@ public class UserMapperTest extends BaseMapperTest {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
             SysUser user = userMapper.selectUserRoleMapSelect(1L);
             Assert.assertNotNull(user);
+            System.out.print("调用user.getRole()");
             Assert.assertNotNull(user.getRole());
+        }finally {
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void testselectAllUserAndRoles(){
+        SqlSession sqlSession = getSqlSession();
+        try{
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            List<SysUser> userList = userMapper.selectAllUserAndRoles();
+            Assert.assertNotNull(userList);
+            Assert.assertTrue(userList.size() > 0);
+            for(SysUser user: userList ){
+                System.out.println("用户名 " + user.getUserName());
+                for(SysRole role: user.getRoleList()){
+                    System.out.println("角色名 " + role.getRoleName()) ;
+                }
+            }
         }finally {
             sqlSession.close();
         }

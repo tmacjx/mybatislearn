@@ -9,6 +9,7 @@ import java.util.List;
 注解 需要手动拼接SQL字符串, 需要代码编译生成
 不方便维护, 只适用于程序简单数据库表基本不变
  */
+@CacheNamespaceRef(RoleMapper.class)
 public interface RoleMapper {
 
 
