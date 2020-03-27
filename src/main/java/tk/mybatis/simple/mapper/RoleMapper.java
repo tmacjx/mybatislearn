@@ -1,6 +1,9 @@
 package tk.mybatis.simple.mapper;
 
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.session.RowBounds;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import tk.mybatis.simple.model.SysPrivilege;
 import tk.mybatis.simple.model.SysRole;
 
 import java.util.List;
@@ -11,7 +14,6 @@ import java.util.List;
  */
 @CacheNamespaceRef(RoleMapper.class)
 public interface RoleMapper {
-
 
     @Select({"select id, role_name roleName, enabled, " +
             "create_by createBy, create_time createTime",
@@ -35,6 +37,8 @@ public interface RoleMapper {
     @Select("select * from sys_role")
     List<SysRole> selectAll();
 
+    List<SysRole> selectAll(RowBounds rowBounds);
+
     @Insert({"insert into sys_role (id, role_name, enabled, create_by, create_time) " +
             "values (#{id}, #{roleName}, #{enabled}, #{createBy}, #{createTime, jdbcType=TIMESTAMP})"})
     int insert(SysRole sysRole);
@@ -55,7 +59,7 @@ public interface RoleMapper {
 
     @Update({"update sys_role " +
             "set role_name = #{roleName}, enabled = #{enabled}, " +
-            "create_by = #{createBy}, create_time = #{createTime, jdbcType=TIMESTAMP}" +
+            "create_by = #{createBy}, create_time = #{createTime, jdbcType=TIMESTAMP} " +
             "where id = #{id}"})
     int updateById(SysRole sysRole);
 
@@ -64,6 +68,12 @@ public interface RoleMapper {
     int deleteById(Long id);
 
     SysRole selectRoleById(Long id);
+
+    List<SysRole> selectAllRoleAndPrivileges();
+
+    List<SysRole> selectRoleByUserId(Long userId);
+
+    List<SysRole> selectRoleByUserIdChoose(Long userId);
 
 
 }

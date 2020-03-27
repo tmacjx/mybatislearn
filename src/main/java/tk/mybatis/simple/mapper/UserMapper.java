@@ -40,4 +40,6 @@ public interface UserMapper {
 
     int updateByldSelective(SysUser sysUser);
 
+    SysUser selectAllUserAndRolesSelect(Long id );
+
 }

@@ -4,6 +4,7 @@ import org.apache.ibatis.ognl.ASTSequence;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 import org.junit.Test;
+import tk.mybatis.simple.model.SysPrivilege;
 import tk.mybatis.simple.model.SysRole;
 import tk.mybatis.simple.model.SysUser;
 
@@ -365,7 +366,7 @@ public class UserMapperTest extends BaseMapperTest {
     }
 
     @Test
-    public void testselectAllUserAndRoles(){
+    public void testSelectAllUserAndRoles(){
         SqlSession sqlSession = getSqlSession();
         try{
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -376,6 +377,28 @@ public class UserMapperTest extends BaseMapperTest {
                 System.out.println("用户名 " + user.getUserName());
                 for(SysRole role: user.getRoleList()){
                     System.out.println("角色名 " + role.getRoleName()) ;
+                    for(SysPrivilege privilege: role.getPrivilegeList()) {
+                        System.out.print("权限 " + privilege.getPrivilegeName());
+                    }
+                }
+            }
+        }finally {
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void testSelectAllUserAndRolesSelect(){
+        SqlSession sqlSession = getSqlSession();
+        try{
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            SysUser user = userMapper.selectAllUserAndRolesSelect(1L);
+            Assert.assertNotNull(user);
+            System.out.println("用户名 " + user.getUserName());
+            for(SysRole role: user.getRoleList()){
+                System.out.println("角色名 " + role.getRoleName()) ;
+                for(SysPrivilege privilege: role.getPrivilegeList()) {
+                    System.out.print("权限 " + privilege.getPrivilegeName());
                 }
             }
         }finally {
